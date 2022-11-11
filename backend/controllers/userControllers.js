@@ -7,7 +7,7 @@ const registerUser = asyncHandler(async (req, res) => {
     const { name, email, password, pic} = req.body;
 
     // console.log(req.body)
-    console.log("check req body")
+    // console.log("check req body")
     // check values of req.body
     if (!name || !email || !password){
         res.status(400);
@@ -64,4 +64,20 @@ const authUser = asyncHandler(async (req, res) => {
     }
 })
 
-module.exports = { registerUser, authUser }
+// api/user?search=avnish
+
+const allUsers = asyncHandler(async (req, res) =>{
+
+    const keyword = req.query.search ? {
+        $or: [
+            { name: { $regex: req.query.search, $options: "i"} },
+            { email: { $regex: req.query.search, $options: "i"} },
+        ]
+    } : {};
+
+    const users = await User.find(keyword).find({ _id: { $ne: req.user._id } });
+
+    res.send(users);
+});
+
+module.exports = { registerUser, authUser, allUsers }
