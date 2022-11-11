@@ -31,7 +31,7 @@ const Login = () => {
     try {
       const config = {
         headers: {
-          "Content-type": "Application/json",
+          "Content-Type": "application/json",
         },
       };
 
@@ -51,7 +51,7 @@ const Login = () => {
 
       localStorage.setItem("userInfo",JSON.stringify(data));
       setLoading(false);
-      navigate('/success');
+      navigate('/chats');
 
     } catch (error) {
       toast({

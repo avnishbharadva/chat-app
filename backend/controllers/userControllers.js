@@ -6,10 +6,12 @@ const registerUser = asyncHandler(async (req, res) => {
 
     const { name, email, password, pic} = req.body;
 
+    // console.log(req.body)
+    console.log("check req body")
     // check values of req.body
     if (!name || !email || !password){
         res.status(400);
-        throw new Error("Please Enter All The Fields")
+        throw new Error("Please Enter All The Fields hehe")
     }
 
     // check that user is already exist or not
@@ -44,7 +46,7 @@ const registerUser = asyncHandler(async (req, res) => {
 const authUser = asyncHandler(async (req, res) => {
 
     const { email, password } = req.body
-
+    // console.log(req.body)
     const user = await User.findOne({ email })
 
     if(user && (await user.matchPassword(password))) {

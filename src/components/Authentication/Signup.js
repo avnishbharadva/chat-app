@@ -63,6 +63,7 @@ const Signup = () => {
   };
 
   const submitHandler = async () => {
+    // console.log(name, email, password, confirmPass, pic)
     setLoading(true);
     if(!name || !email || !password || !confirmPass) {
       toast({
@@ -83,13 +84,14 @@ const Signup = () => {
         isClosable: true,
         position: 'bottom',
       });
+      setLoading(false);
       return;
     }
 
     try {
       const config = {
         headers: {
-          "Content-type": "application/json",
+          "Content-Type": "application/json",
         },
       };
       const { data } = await axios.post(
@@ -109,7 +111,7 @@ const Signup = () => {
       localStorage.setItem('userInfo', JSON.stringify(data));
 
       setLoading(false)
-      navigate('/success');
+      navigate('/chats');
     } catch (error) {
       toast({
         title: 'Error Occured!',
