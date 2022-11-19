@@ -5,6 +5,7 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ChatState } from '../../Context/ChatProvider'
 import ChatLoading from '../ChatLoading'
+import UserListItem from '../UserAvatar/UserListItem'
 import ProfileModal from './ProfileModal'
 
 const SideDrawer = () => {
@@ -46,8 +47,19 @@ const SideDrawer = () => {
 
       const {data} = await axios.get(`/api/user?search=${search}`, config)
 
+      if(data.length === 0){
+        toast({
+          title: "Error Occured!",
+          description: "Failed to Load the Search Results",
+          status: "error",
+          duration: 4000,
+          isClosable: true,
+          position: "bottom-left",
+        })
+      } else {
       setLoading(false)
       setSearchResult(data)
+      }
     } catch (error) {
       toast({
         title: "Error Occured!",
