@@ -99,7 +99,6 @@ const MyChats = () => {
                   {!chat.isGroupChat
                     ? getSender(loggedUser, chat.users)
                     : chat.chatName}
-                  {chat.isGroupChat}
                 </Text>
               </Box>
             ))}
