@@ -231,8 +231,7 @@ const UpdateGroupChatModal = ({ fetchAgain, setFetchAgain }) => {
                                 value={groupChatName}
                                 onChange={(e) => setGroupChatName(e.target.value)}
                             />
-                        </FormControl>
-                        <Button
+                            <Button
                             variant="solid"
                             colorScheme="teal"
                             ml={1}
@@ -241,6 +240,8 @@ const UpdateGroupChatModal = ({ fetchAgain, setFetchAgain }) => {
                         >
                             Update
                         </Button>
+                        </FormControl>
+                        
                         <FormControl>
                             <Input
                                 placeholder="Add User To Group"
@@ -252,13 +253,13 @@ const UpdateGroupChatModal = ({ fetchAgain, setFetchAgain }) => {
                         {loading ? (
                             <Spinner size="lg" />
                         ) : (
-                            searchResult?.map((user) => {
+                            searchResult?.map((user) => (
                                 <UserListItem
                                     key={user._id}
                                     user={user}
                                     handleFunction={() => handleAddUser(user)}
                                 />
-                            })
+                            ))
                         )}
                     </ModalBody>
 
