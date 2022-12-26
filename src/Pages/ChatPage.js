@@ -1,4 +1,4 @@
-import { Box, flattenTokens } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import ChatBox from "../components/ChatBox";
 import MyChats from "../components/MyChats";
 import SideDrawer from "../components/miscellaneous/SideDrawer";
