@@ -1,5 +1,5 @@
 import { AddIcon } from '@chakra-ui/icons';
-import { Box, Button, Stack, Text, useToast } from '@chakra-ui/react';
+import { Avatar, Box, Button, Stack, Text, Tooltip, useToast } from '@chakra-ui/react';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { getSender } from '../config/ChatLogics';
@@ -9,9 +9,13 @@ import GroupChatModal from './miscellaneous/GroupChatModal';
 
 const MyChats = ({ fetchAgain }) => {
 
-  const [loggedUser, setLoggedUser] = useState();
+  const [loggedUser, setLoggedUser] = useState(JSON.parse(localStorage.getItem("userInfo")));
   const { selectedChat, setSelectedChat, user, chats, setChats } = ChatState();
   const toast = useToast();
+
+  useEffect(() => {
+    setLoggedUser(JSON.parse(localStorage.getItem("userInfo")));
+  }, []);
 
   const fetchChats = async () => {
     // console.log(user._id)
@@ -35,7 +39,7 @@ const MyChats = ({ fetchAgain }) => {
       });
     }
   };
-
+  
   useEffect(() => {
     setLoggedUser(JSON.parse(localStorage.getItem("userInfo")))
     fetchChats();
@@ -65,13 +69,13 @@ const MyChats = ({ fetchAgain }) => {
         My Chats
 
         <GroupChatModal>
-        <Button
-          display="flex"
-          fontSize={{ base: "17px", md: "10px", lg: "17px" }}
-          rightIcon={<AddIcon />}
-        >
-          New Group Chat
-        </Button>
+          <Button
+            display="flex"
+            fontSize={{ base: "17px", md: "10px", lg: "17px" }}
+            rightIcon={<AddIcon />}
+          >
+            New Group Chat
+          </Button>
         </GroupChatModal>
       </Box>
 
@@ -92,7 +96,7 @@ const MyChats = ({ fetchAgain }) => {
               <Box
                 onClick={() => setSelectedChat(chat)}
                 cursor="pointer"
-                bg={selectedChat === chat ? "#38B2AC" : "#E8E8E8"}
+                bg={selectedChat === chat ? "purple" : "#E8E8E8"}
                 color={selectedChat === chat ? "white" : "black"}
                 px={3}
                 py={2}
