@@ -1,4 +1,4 @@
-import { ChakraProvider } from '@chakra-ui/react';
+import { ChakraProvider, ColorModeProvider } from '@chakra-ui/react';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
@@ -10,7 +10,9 @@ root.render(
   <Router>
     <ChatProvider>
       <ChakraProvider>
+        <ColorModeProvider>
         <App />
+        </ColorModeProvider>
       </ChakraProvider>
     </ChatProvider>
   </Router>,

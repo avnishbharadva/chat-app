@@ -1,5 +1,5 @@
 import { ArrowBackIcon } from '@chakra-ui/icons';
-import { Box, FormControl, IconButton, Input, Spinner, Text, useToast } from '@chakra-ui/react';
+import { Box, FormControl, IconButton, Input, Spinner, Text, useToast, useColorMode } from '@chakra-ui/react';
 import axios from 'axios';
 import React from 'react'
 import { useEffect } from 'react';
@@ -18,6 +18,8 @@ const ENDPOINT = "http://localhost:5000";
 var socket, selectedChatCompare;
 
 const SingleChat = ({ fetchAgain, setFetchAgain }) => {
+    const {colorMode, toggleColorMode} = useColorMode();
+
 
     const toast = useToast();
     const [messages, setMessages] = useState([]);
@@ -201,7 +203,8 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                             flexDir="column"
                             justifyContent="flex-end"
                             p={3}
-                            bg="#E8E8E8"
+                            bg={colorMode === "light" ? "#f7f7f7" : "gray.600"}
+
                             w="100%"
                             h="100%"
                             borderRadius="lg"

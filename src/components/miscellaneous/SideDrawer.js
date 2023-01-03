@@ -1,5 +1,5 @@
-import { BellIcon, ChevronDownIcon } from '@chakra-ui/icons'
-import { Avatar, Box, Button, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay, Input, Menu, MenuButton, MenuDivider, MenuItem, MenuList, Spinner, Text, Tooltip, useDisclosure, useToast } from '@chakra-ui/react'
+import { BellIcon, ChevronDownIcon,MoonIcon, SunIcon } from '@chakra-ui/icons'
+import { Avatar, Box, Button, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay, IconButton, Input, Menu, MenuButton, MenuDivider, MenuItem, MenuList, Spinner, Text, Tooltip, useColorMode, useDisclosure, useToast } from '@chakra-ui/react'
 import axios from 'axios'
 import React, { useState } from 'react'
 import { Effect } from 'react-notification-badge'
@@ -17,11 +17,15 @@ const SideDrawer = () => {
   const [searchResult, setSearchResult] = useState([])
   const [loading, setLoading] = useState(false)
   const [loadingChat, setLoadingChat] = useState()
+  const [toggleIcon , setToggleIcon] = useState(<MoonIcon/>)
   const { user, setSelectedChat, chats, setChats, notification, setNotification } = ChatState();
   const navigate = useNavigate();
   const { isOpen, onOpen, onClose } = useDisclosure()
   const toast = useToast();
   
+ const {colorMode, toggleColorMode} = useColorMode();
+ console.log(colorMode);
+ 
   const logoutHandler = () => {
     localStorage.removeItem("userInfo");
     navigate("/");
@@ -108,7 +112,7 @@ const SideDrawer = () => {
 
   return (
     <>
-      <Box display="flex" justifyContent="space-between" alignItems="center" bg="white" w="100%" p="5px 10px 5px 10px" borderWidth="5px">
+      <Box display="flex" justifyContent="space-between" alignItems="center"     bg={colorMode === "light" ? "gray.100" : "gray.700"} w="100%" p="5px 10px 5px 10px" borderWidth="5px">
         <Tooltip label="Search Users to Chat" hasArrow placement='bottom-end'>
           <Button variant="ghost" onClick={onOpen}>
             <i className="fa-solid fa-magnifying-glass"></i>
@@ -122,6 +126,8 @@ const SideDrawer = () => {
           AK-Chat
         </Text>
         <div>
+          <IconButton  icon={colorMode === "light" ?<MoonIcon/> : <SunIcon/>} onClick={toggleColorMode}/>
+
           <Menu>
             <MenuButton p={1}>
               <NotificationBadge
