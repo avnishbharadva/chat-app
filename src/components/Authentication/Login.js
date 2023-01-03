@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
-import { Button, FormControl, FormLabel, Input, InputGroup, InputRightElement, useToast, VStack } from '@chakra-ui/react'
+import { Button, FormControl, FormLabel, Input, InputGroup, InputRightElement, useToast, VStack, useColorMode} from '@chakra-ui/react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'; 
 
 const Login = () => {
+  const {colorMode, toggleColorMode} = useColorMode();
   const [show, setShow] = useState(false)
   const [email, setEmail] = useState()
   const [password, setPassword] = useState()
@@ -69,7 +70,7 @@ const Login = () => {
   }
   
   return (
-    <VStack spacing='5px'>
+    <VStack spacing='5px' >
 
       <FormControl id="email" isRequired>
         <FormLabel>Email</FormLabel>

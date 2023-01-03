@@ -1,5 +1,5 @@
 import { AddIcon } from '@chakra-ui/icons';
-import { Avatar, Box, Button, Stack, Text, Tooltip, useToast } from '@chakra-ui/react';
+import { Avatar, Box, Button, Stack, Text, Tooltip, useToast, useColorMode } from '@chakra-ui/react';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { getSender } from '../config/ChatLogics';
@@ -8,6 +8,9 @@ import ChatLoading from './ChatLoading';
 import GroupChatModal from './miscellaneous/GroupChatModal';
 
 const MyChats = ({ fetchAgain }) => {
+
+  const {colorMode, toggleColorMode} = useColorMode();
+
 
   const [loggedUser, setLoggedUser] = useState(JSON.parse(localStorage.getItem("userInfo")));
   const { selectedChat, setSelectedChat, user, chats, setChats } = ChatState();
@@ -51,7 +54,8 @@ const MyChats = ({ fetchAgain }) => {
       flexDir="column"
       alignItems="center"
       p={3}
-      bg="white"
+      bg={colorMode === "light" ? "white" : "gray.700"}
+
       w={{ base: "100%", md: "31%" }}
       borderRadius="lg"
       borderWidth="1px"
@@ -65,6 +69,7 @@ const MyChats = ({ fetchAgain }) => {
         w="100%"
         justifyContent="space-between"
         alignItems="center"
+        
       >
         My Chats
 
@@ -83,7 +88,7 @@ const MyChats = ({ fetchAgain }) => {
         display="flex"
         flexDir="column"
         p={3}
-        bg="#F8F8F8"
+        bg={colorMode === "light" ? "#f8f8f8" : "gray.600"}
         w="100%"
         h="100%"
         borderRadius="lg"
