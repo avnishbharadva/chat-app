@@ -80,4 +80,10 @@ const allUsers = asyncHandler(async (req, res) =>{
     res.send(users);
 });
 
-module.exports = { registerUser, authUser, allUsers }
+const allUsersDetails = asyncHandler (async (req, res) => {
+    const users = await User.find();
+
+    res.send(users);
+});
+
+module.exports = { registerUser, authUser, allUsers, allUsersDetails }
