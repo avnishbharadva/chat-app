@@ -1,4 +1,4 @@
-import { ViewIcon } from '@chakra-ui/icons'
+import { PhoneIcon, ViewIcon } from '@chakra-ui/icons'
 import {
   Modal,
   ModalOverlay,
@@ -10,19 +10,27 @@ import {
   Button,
   Image,
   Text,
+  Box,
 } from '@chakra-ui/react'
 import { IconButton, useDisclosure } from '@chakra-ui/react'
 import React from 'react'
 
-const ProfileModal = ({user, children}) => {
+const ProfileModal = ({ user, children }) => {
 
-    const { isOpen, onOpen, onClose } = useDisclosure()
+  const { isOpen, onOpen, onClose } = useDisclosure()
+
+  const handleClick = () => {
+    console.log("video call")
+  }
 
   return (
     <>
       {
         children ? <span onClick={onOpen}>{children}</span> : (
-            <IconButton display={{base : "flex"}} icon={<ViewIcon/>} onClick={onOpen} />
+          <Box display="flex">
+            <IconButton icon={<PhoneIcon />} mx="2" onClick={handleClick}/>
+            <IconButton icon={<ViewIcon />} onClick={onOpen} />
+          </Box>
         )
       }
       <Modal size="lg" isOpen={isOpen} onClose={onClose} isCentered>
@@ -32,7 +40,7 @@ const ProfileModal = ({user, children}) => {
           <ModalCloseButton />
           <ModalBody display="flex" flexDir="column" alignItems="center" justifyContent="space-between">
             <Image borderRadius="full" boxSize="150px" src={user.pic} alt={user.name} />
-            <Text fontSize={{ base: "28px", md: "30px"}} fontFamily="Work sans">
+            <Text fontSize={{ base: "28px", md: "30px" }} fontFamily="Work sans">
               Email : {user.email}
             </Text>
           </ModalBody>
@@ -41,7 +49,7 @@ const ProfileModal = ({user, children}) => {
             <Button colorScheme='purple' mr={3} onClick={onClose}>
               Close
             </Button>
-            
+
           </ModalFooter>
         </ModalContent>
       </Modal>

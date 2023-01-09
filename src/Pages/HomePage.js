@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Box, Container, Text,Tabs, TabList, TabPanels, Tab, TabPanel, Button, useMultiStyleConfig, useTab, useColorMode } from '@chakra-ui/react'
+import { Box, Container, Text,Tabs, TabList, TabPanels, TabPanel, Button, useMultiStyleConfig, useTab, useColorMode } from '@chakra-ui/react'
 import Login from '../components/Authentication/Login'
 import Signup from '../components/Authentication/Signup'
 import { useNavigate } from 'react-router-dom'
@@ -49,7 +49,7 @@ const HomePage = () => {
       <center><Text fontSize="4xl" fontFamily="Work sans" >AK-Chat</Text></center>
     </Box>
 
-    <Box bg="white" w="100%" p={4} bg={colorMode === "light" ? "gray.100" : "gray.700"} borderRadius="lg" borderWidth="1px">
+    <Box w="100%" p={4} bg={colorMode === "light" ? "gray.100" : "gray.700"} borderRadius="lg" borderWidth="1px">
       <Tabs variant='soft-rounded' colorScheme="purple">
         <TabList mb="1em">
           {/* <Tab width="50%">Login</Tab>
