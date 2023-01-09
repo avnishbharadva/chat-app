@@ -24,7 +24,7 @@ const SideDrawer = () => {
   const toast = useToast();
   
  const {colorMode, toggleColorMode} = useColorMode();
- console.log(colorMode);
+//  console.log(colorMode);
  
   const logoutHandler = () => {
     localStorage.removeItem("userInfo");

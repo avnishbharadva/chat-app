@@ -14,13 +14,17 @@ import {
 } from '@chakra-ui/react'
 import { IconButton, useDisclosure } from '@chakra-ui/react'
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const ProfileModal = ({ user, children }) => {
 
   const { isOpen, onOpen, onClose } = useDisclosure()
+  const navigate = useNavigate()
 
   const handleClick = () => {
-    console.log("video call")
+    // console.log(Date.now().toString())
+    const roomId = Date.now().toString()
+    navigate(`/room/${roomId}`)
   }
 
   return (
